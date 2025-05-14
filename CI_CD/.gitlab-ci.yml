@@ -1,0 +1,73 @@
+stages:
+  - style
+  - build
+  - test
+  - deploy
+
+.notify: &notify
+  - |
+   MESSAGE=$(if [[ "$CI_JOB_STATUS" =~ "failed" ]]; then echo "$CI_JOB_STAGE stage: FAIL"; else echo "$CI_JOB_STAGE stage: SUCCESS"; fi)
+   ssh arbokboe@192.10.10.2 "curl -s -X POST https://api.telegram.org/bot7055028609:AAFGHhi0UUFpxbXbWSpg-xqTA6Rg4zesgXo/sendMessage -d chat_id=233771379 -d text=\"$MESSAGE\"" > "/dev/null"
+
+style-job:
+  stage: style
+  tags:
+    - style
+  script:
+    - clang-format -style=Google -Werror -n src/cat/s21_cat.* src/grep/s21_grep.*
+  after_script:
+    - *notify
+  only:
+    - develop
+
+build-job:
+  stage: build
+  tags:
+    - build
+  script:
+    - cd src/cat && make s21_cat
+    - cd ../../src/grep && make s21_grep
+  after_script:
+    - *notify
+  artifacts:
+    paths:
+      - src/cat/s21_cat
+      - src/grep/s21_grep
+    expire_in: 30 days
+  only:
+    - develop
+
+test-job:
+  stage: test
+  tags:
+    - test
+  script:
+    - (cd src/cat && make test)
+    - (cd src/grep && make test)
+    - |
+      if ! grep -q "FAIL: 0" $PWD/src/cat/test_log/s21_cat_log.log || ! grep -q "FAIL: 0" $PWD/src/grep/test_log/s21_grep_log.log; then
+        exit 1
+      fi
+  after_script:
+    - *notify
+  only:
+    - develop
+
+deploy-job:
+  stage: deploy
+  tags:
+    - deploy
+  when: manual
+  script:
+    - |
+      if scp ./src/cat/s21_cat ./src/grep/s21_grep arbokboe@192.10.10.2:~ ; then
+        ssh arbokboe@192.10.10.2 echo "123" "sudo mv s21_cat s21_grep /usr/local/bin"
+        echo -e "\e[32mSuccesfully copy artifacts to /usr/local/bin\e0[0m"
+      else
+        echo -e "\e[31mCAN'T COPY ARTIFACTS\e[0m"
+        exit 1
+      fi
+  after_script:
+    - *notify
+  only:
+    - develop
