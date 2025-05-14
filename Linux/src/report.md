@@ -2,17 +2,17 @@
    #### 1. Узнай версию Ubuntu, выполнив команду 
    ####    cat /etc/issue.
 
-![установка](/src/image/OC.png)
+![установка](image/OC.png)
 
 ## Part 2. Создание пользователя 
 
 1. Вставьте скриншот вызова команды для создания пользователя.
 
-![new_user](/src/image/new_user_command.png)
+![new_user](image/new_user_command.png)
 
 2. Новый пользователь должен быть в выводе команды cat /etc/passwd
 
-![name](/src/image/name.png)
+![name](image/name.png)
 
 ## №3. Настройка сети ОС
 
@@ -25,21 +25,21 @@
 
 Результат:
 
-![name_serv](/src/image/name_ser.png)
+![name_serv](image/name_ser.png)
 
 2.Установить временную зону, соответствующую вашему текущему местоположению
 
-![time](/src/image/time.png)
+![time](image/time.png)
 
 3.Вывести названия сетевых интерфейсов с помощью консольной команды
 
-![ifconfig](/src/image/ifconfig.png)
+![ifconfig](image/ifconfig.png)
 
 lo или local loopback (локальная петля). Служит для подключения по сети к этому же компьютеру и не требует дополнительной настройки;
 
 4.Используя консольную команду получить ip адрес устройства, на котором вы работаете, от DHCP сервера.
 
-![hostname](/src/image/hostname.png)
+![hostname](image/hostname.png)
 
 Dynamic Host Configuration Protocol (DHCP) — автоматический предоставляет IP адреса и прочие настройки сети (маску сети, шлюз и т.п) компьютерам и различным устройствам в сети.
 
@@ -47,91 +47,91 @@ Dynamic Host Configuration Protocol (DHCP) — автоматический пр
 
 внешний ip-адрес шлюза (ip):
 
-![wget](/src/image/wget.png)
+![wget](image/wget.png)
 
 внутренний IP-адрес шлюза:
 
-![iproute](/src/image/iproute.png)
+![iproute](image/iproute.png)
 
 6.Задать статичные (заданные вручную, а не полученные от DHCP сервера) настройки ip, gw, dns (использовать публичный DNS серверы, например 1.1.1.1 или 8.8.8.8).
 
-![ip](/src/image/ip.png)
+![ip](image/ip.png)
 
 sudo vim /etc/netplan/00-installer-config.yaml
 
-![ip2](/src/image/ip2.png)
+![ip2](image/ip2.png)
 
-![paket](/src/image/paket.png)
+![paket](image/paket.png)
 
 ## №4. Обновление ОС
 
 1.Обновить системные пакеты до последней на момент выполнения задания версии
 
-![up](/src/image/upgrade.png)
+![up](image/upgrade.png)
 
 ## №5. Использование команды sudo
 
 sudo - позволяет временно поднимать привилегии и выполнять задачи администрирования системы с максимальными правами
 Добавили пользователя в группу с привилегиями sudo, переключились на этого пользователя и поменяли hostname
 
-![sudo](/src/image/sudo.png)
+![sudo](image/sudo.png)
 
 ## №6. Установка и настройка службы времени
 
 1.Настроить службу автоматической синхронизации времени.
 Вывод следующей команды должен содержать NTPSynchronized=yes: timedatectl show
 
-![tim](/src/image/time2.png)
+![tim](image/time2.png)
 
 ## №7. Установка и использование текстовых редакторов
 
 VIM Для сохранения и выхода нажал ESC и прописал ZZ
 
-![vim](/src/image/VIM.png)
+![vim](image/VIM.png)
 
 NANO Для сохранения нажал ^O, ввёл имя файла и подтвердил. Вышел через ^X
 
-![nano](/src/image/nano.png)
+![nano](image/nano.png)
 
 JOE Для сохранения и выхода нажал ^KX, ввёл имя файла и подтвердил.
 
-![joe](/src/image/joe.png)
+![joe](image/joe.png)
 
 VIM Для выхода без сохранения ESC -> :q! -> ENTER
 
-![vim](/src/image/vim2.png)
+![vim](image/vim2.png)
 
 NANO Для выхода без сохранения ^X -> N
 
-![nano](/src/image/nano2.png)
+![nano](image/nano2.png)
 
 JOE Для выхода без сохранения ^C -> y
 
-![joe](/src/image/joe2.png)
+![joe](image/joe2.png)
 
 VIM Для поиска: /что_ищем  
 
-![vim](/src/image/vim3.png)
+![vim](image/vim3.png)
 
 Для замены: :s/что_заменить/чем
 
-![vim](/src/image/vim4.png)
+![vim](image/vim4.png)
 
 Для поиска: ^W -> что ищем
 
-![nano](/src/image/nano3.png)
+![nano](image/nano3.png)
 
 Для замены: ^\ -> что заменить -> чем -> Y
 
-![nano](/src/image/nano4.png)
+![nano](image/nano4.png)
 
 Для поиска: ^K F -> что ищем -> I
 
-![joe](/src/image/joe3.png)
+![joe](image/joe3.png)
 
 Для замены: ^K F -> что заменить -> R -> чем -> Y
 
-![joe](/src/image/joe4.png)
+![joe](image/joe4.png)
 
 ## №8. Установка и базовая настройка сервиса SSHD
 
@@ -145,12 +145,12 @@ VIM Для поиска: /что_ищем
    sudo systemctl enable ssh
    systemctl status ssh
 
-![ssh](/src/image/ssh.png)
+![ssh](image/ssh.png)
 
 3.Перенастроить службу SSHd на порт 2022.
    sudo vim /etc/ssh/sshd_config
 
-![port](/src/image/port.png)
+![port](image/port.png)
 
 systemctl restart sshd
 
@@ -165,13 +165,13 @@ systemctl restart sshd
    ps -p 'pid1' 'pid2'
    ps U 'userlist' (найти все процессы, выполняемые конкретным пользователем);
 
-![sshd](/src/image/sshd.png)
+![sshd](image/sshd.png)
 
 5.Перезагрузить систему
 
 netstat -tan
 
-![stat](/src/image/stat.png)
+![stat](image/stat.png)
 
 -t (--tcp) отображает соедниеня только по tcp
 -a (--all) вывод всех активных подключений TCP
@@ -205,38 +205,38 @@ Pid 1078
 
 htop сортировка по PID
 
-![pid](/src/image/PID.png)
+![pid](image/PID.png)
 
 сортировка по CPU
 
-![cpu](/src/image/cpu.png)
+![cpu](image/cpu.png)
 
 сортировка по MEM
 
-![mem](/src/image/mem.png)
+![mem](image/mem.png)
 
 сортировка по time 
 
-![time](/src/image/time.png)
+![time](image/time.png)
 
 отфильтрованному для процесса sshd
 
-![filtr](/src/image/filtr.png)
+![filtr](image/filtr.png)
 
 с процессом syslog, найденным, используя поиск
 
-![log](/src/image/log.png)
+![log](image/log.png)
 
 с добавленным выводом hostname, clock и uptime
 
-![ht](/src/image/ht.png)
+![ht](image/ht.png)
 
 
 ## №10. Использование утилиты fdisk
 
 disk /dev/sda, size: 10 Gib, 10737418240 bytes, 102072 sectors
 
-![fd](/src/image/fd.png)
+![fd](image/fd.png)
 
 ## №11. Использование утилиты df
 
@@ -262,7 +262,7 @@ df -Th
 
 Определить и написать в отчёт тип файловой системы для раздела - ext4. 
 
-![dfth](/src/image/dfth.png)
+![dfth](image/dfth.png)
 
 
 ## №12. Использование утилиты du
@@ -271,15 +271,15 @@ du
 
 Вывести размер папок /home, /var, /var/log (в байтах)
 
-![du](/src/image/du.png)
+![du](image/du.png)
 
 Вывести размер папок /home, /var, /var/log (в человекочитаемом виде)
 
-![lg](/src/image/lg.png)
+![lg](image/lg.png)
 
 Вывести размер всего содержимого в /var/log (не общее, а каждого вложенного элемента, используя *)
 
-![sss](/src/image/sss.png)
+![sss](image/sss.png)
 
 ## №13. Установка и использование утилиты ncdu
 
@@ -289,13 +289,13 @@ du
 Вывести размер папок /home, /var, /var/log.
 
 home
-![ncdu](/src/image/ncdu.png)
+![ncdu](image/ncdu.png)
 
 var
-![var](/src/image/var.png)
+![var](image/var.png)
 
 var/log
-![var2](/src/image/var2.png)
+![var2](image/var2.png)
 
 ## №14. Работа с системными журналами
 
@@ -308,24 +308,24 @@ sudo vim /var/log/auth.log
 sudo systemctl restart ssh
 
 Вставить в отчёт скрин с сообщением о рестарте службы (искать в логах).
-![rest](/src/image/rest.png)
+![rest](image/rest.png)
 
 ## №15. Использование планировщика заданий CRON
 
 Используя планировщик заданий, запустите команду uptime через каждые 2 минуты.
 
-![cron](/src/image/cron.png)
+![cron](image/cron.png)
 
 Найти в системных журналах строчки (минимум две в заданном временном диапазоне) о выполнении.
 
-![up](/src/image/up.png)
+![up](image/up.png)
 
 Вывели список задач
 
-![2mi](/src/image/2mi.png)
+![2mi](image/2mi.png)
 
 Удалили все задачи вывели список
 
-![del](/src/image/del.png)
+![del](image/del.png)
 
 
